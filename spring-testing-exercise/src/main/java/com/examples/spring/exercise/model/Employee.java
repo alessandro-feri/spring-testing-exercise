@@ -13,6 +13,10 @@ public class Employee {
 		this.name = name;
 		this.salary = salary;
 	}
+	
+	public Employee() {
+		
+	}
 
 	public Long getId() {
 		return id;
