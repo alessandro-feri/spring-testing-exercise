@@ -1,0 +1,23 @@
+language: java
+
+dist: xenial
+
+jdk: openjdk8
+
+git:
+  depth: false
+
+addons:
+  sonarcloud:
+    organization: "alessandroferi-github"
+
+ # skip installation step
+install: true
+
+cache:
+   directories:
+      - $HOME/.m2
+      - $HOME/.sonar/cache
+
+script:
+  - mvn -f spring-testing-exercise/pom.xml clean verify -Pjacoco coveralls:report sonar:sonar 
