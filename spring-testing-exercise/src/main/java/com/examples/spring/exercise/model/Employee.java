@@ -13,15 +13,15 @@ public class Employee {
 	private Long id;
 	private String name;
 	private long salary;
-	
-	public Employee() {
-		
-	}
 
 	public Employee(Long id, String name, long salary) {
 		this.id = id;
 		this.name = name;
 		this.salary = salary;
+	}
+	
+	public Employee() {
+		
 	}
 
 	public Long getId() {
