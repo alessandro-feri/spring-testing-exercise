@@ -1,6 +1,8 @@
 package com.examples.spring.exercise.controllers;
 
+import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,5 +30,18 @@ public class EmployeeWebControllerHtmlUnitTest {
 		HtmlPage page = webClient.getPage("/");
 		assertThat(page.getTitleText()).isEqualTo("Employees");
 	}
+	
+	@Test
+	public void testHomePageWithNoEmployees() throws Exception {
+		when(employeeService.getAllEmployees())
+			.thenReturn(emptyList());
+
+		HtmlPage page = this.webClient.getPage("/");
+
+		assertThat(page.getBody()
+			.getTextContent()).contains("No employee");
+	}
+
+
 
 } 
