@@ -36,4 +36,12 @@ public class EmployeeWebController {
 		return "edit";
 	}
 	
+	@GetMapping("/new")
+	public String newEmployee(Model model) {
+		model.addAttribute("employee", new Employee());
+		model.addAttribute("message", "");
+		
+		return "edit";
+	}
+	
 }
