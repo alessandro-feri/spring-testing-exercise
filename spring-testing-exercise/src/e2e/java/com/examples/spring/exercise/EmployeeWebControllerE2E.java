@@ -1,5 +1,7 @@
 package com.examples.spring.exercise;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -50,6 +52,25 @@ public class EmployeeWebControllerE2E {
 		// the "New employee" link is present with href containing /new
 		driver.findElement
 			(By.cssSelector("a[href*='/new"));
+	}
+	
+	@Test
+	public void testCreateNewEmployee() {
+		driver.get(baseUrl);
+		
+		// add a user using the "New employee" link
+		driver.findElement(By.cssSelector("a[href*='/new")).click();
+		
+		// fill the form
+		driver.findElement(By.name("name")).sendKeys("new employee");
+		driver.findElement(By.name("salary")).sendKeys("2000");
+	    // press Save
+		driver.findElement(By.name("btn_submit")).click();
+		
+		// we are redirecred to the home page
+		// the table (on the home page) shows the created employee
+		assertThat(driver.findElement(By.id("employee_table")).getText())
+			.contains("new employee", "2000");
 	}
 
 } 
