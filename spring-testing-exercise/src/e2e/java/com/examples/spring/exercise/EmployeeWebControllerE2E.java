@@ -58,14 +58,6 @@ public class EmployeeWebControllerE2E {
 		driver.quit();
 	}
 
-	@Test
-	public void testHomePage() {
-		driver.get(baseUrl);
-
-		// the "New employee" link is present with href containing /new
-		driver.findElement
-			(By.cssSelector("a[href*='/new"));
-	}
 	
 	@Test
 	public void testCreateNewEmployee() {
