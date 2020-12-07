@@ -62,10 +62,11 @@ public class EmployeeWebControllerHtmlUnitTest {
 
 		assertThat(removeWindowsCR(table.asText()))
 				.isEqualTo(
-				"ID	Name	Salary\n" + 
-				"1	test1	1000	Edit\n" + 
-				"2	test2	2000	Edit"
-			);
+						"Employees\n" +
+						"ID	Name	Salary\n" + 
+						"1	test1	1000	Edit\n" + 
+						"2	test2	2000	Edit"
+				);
 		page.getAnchorByHref("/edit/1");
 		page.getAnchorByHref("/edit/2");
 	}
