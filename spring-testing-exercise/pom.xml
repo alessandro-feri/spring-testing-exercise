@@ -235,7 +235,7 @@
 	        <mutators>
 	          <mutator>ALL</mutator>
 	        </mutators>
-	        <mutationThreshold>50</mutationThreshold>
+	        <mutationThreshold>60</mutationThreshold>
 	      </configuration>
 	    </plugin>
       </plugins> 
