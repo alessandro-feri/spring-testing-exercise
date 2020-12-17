@@ -208,9 +208,35 @@
 	      <version>4.3.0</version>
 	    </plugin>
 	    <plugin>
-       <groupId>org.sonarsource.scanner.maven</groupId>
+          <groupId>org.sonarsource.scanner.maven</groupId>
 	      <artifactId>sonar-maven-plugin</artifactId>
 	      <version>3.7.0.1746</version>
+	    </plugin>
+	    <plugin>
+	      <groupId>org.pitest</groupId>
+	      <artifactId>pitest-maven</artifactId>
+	      <version>1.4.8</version>
+	      <configuration>
+	        <targetClasses>
+	          <param>com.examples.spring.exercise.*</param>
+	        </targetClasses>
+	        <excludedClasses>
+	          <param>com.examples.spring.exercise.model.Employee</param>
+	          <param>com.examples.spring.exercise.SpringTestingExerciseApplication</param>
+	        </excludedClasses>
+	        <targetTests>
+	          <param>com.examples.spring.exercise.*</param>
+	        </targetTests>
+	        <excludedTestClasses>
+	          <param>com.examples.spring.exercise.*IT*</param>
+	          <param>com.examples.spring.exercise.EmployeeWebControllerE2E</param>
+	        </excludedTestClasses>
+	        <timeoutConstant>100000</timeoutConstant>
+	        <mutators>
+	          <mutator>ALL</mutator>
+	        </mutators>
+	        <mutationThreshold>50</mutationThreshold>
+	      </configuration>
 	    </plugin>
       </plugins> 
 	</pluginManagement>
@@ -330,6 +356,29 @@
                 <server.port>${tomcat.http.port}</server.port>
               </systemPropertyVariables>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>pit</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <!-- Configured in pluginManagement -->
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>mutationCoverage</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
